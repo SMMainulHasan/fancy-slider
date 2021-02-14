@@ -15,21 +15,31 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
-  imagesArea.style.display = 'block';
-  gallery.innerHTML = '';
-  // show gallery title
-  galleryHeader.style.display = 'flex';
-  images.forEach(image => {
-    let div = document.createElement('div');
-    div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
-    gallery.appendChild(div)
-  })
-  toggle();
+  if (images.length === 0) {
+    gallery.innerHTML = '';
+    //Not find error massage
+    document.getElementById('err').style.display = 'block';
+    toggleLoading();
+  }
+  else {
+    //Not find error massage
+    document.getElementById('err').style.display = 'none';
+    imagesArea.style.display = 'block';
+    gallery.innerHTML = '';
+    // show gallery title
+    galleryHeader.style.display = 'flex';
+    images.forEach(image => {
+      let div = document.createElement('div');
+      div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
+      div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+      gallery.appendChild(div)
+    })
+    toggleLoading();
+  }
 }
 
 const getImages = (query) => {
-  toggle();
+  toggleLoading();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -39,16 +49,17 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
-
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
+    element.classList.add('added');
   } else {
-    // alert('Hey, Already added !')
-    sliders.filter(img);
+    // select & deselect
+    const newSliders = sliders.filter(slide => slide != img);
+    sliders = newSliders;
+    element.classList.toggle('added');
   }
-  
+
 }
 var timer
 const createSlider = () => {
@@ -137,9 +148,10 @@ searchBtn.addEventListener('click', function () {
 
 sliderBtn.addEventListener('click', function () {
   createSlider()
+
 })
 
-const toggle = () =>{
- const spinner = document.getElementById("loading-spinner");
- spinner.classList.toggle('spinner');
+const toggleLoading = () => {
+  const spinner = document.getElementById("loading-spinner");
+  spinner.classList.toggle('spinner');
 }

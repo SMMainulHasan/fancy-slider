@@ -25,6 +25,22 @@
       <button type="button" id="search-btn" class="btn btn-primary mb-2">Search</button>
     </div>
 
+    
+    <section class="images">
+      <div class="justify-content-around align-items-center mt-3 gallery-header mb-2">
+        <h3 class="head-title text-center">Select image for create slider</h3>
+        <div class="input-group col-md-3 mb-2 mb-md-0">
+          <div class="d-flex duration-box">
+              <h5>Slide Change Duration :</h4>
+              <input class="form-control" id="duration" placeholder="1 Sec">
+          </div>
+        </div>
+        <button id="create-slider" class="btn btn-primary px-5">Create slider</button>
+      </div>
+      <div class="row gallery">
+        
+      </div>
+    </section>
     <!-- loading spinner -->
     <div id ="loading-spinner" class="d-flex justify-content-center spinner">
       <div class="spinner-border text-secondary" role="status">
@@ -32,18 +48,14 @@
       </div>
     </div>
 
-    <section class="images">
-      <div class="justify-content-around align-items-center mt-3 gallery-header mb-2">
-        <h3 class="head-title text-center">Select image for create slider</h3>
-        <div class="input-group col-md-3 mb-2 mb-md-0">
-          <input class="form-control" id="duration" placeholder="slider change duration">
-        </div>
-        <button id="create-slider" class="btn btn-primary px-5">Create slider</button>
+    <!-- Not Found massage -->
+    <div id ="err">
+      <div class="d-flex justify-content-center">
+        <img src="https://w7.pngwing.com/pngs/899/752/png-transparent-blue-and-red-opps-pop-art-oops-explosion-like-text-bubbles-blue-text-logo.png" alt="">
       </div>
-      <div class="row gallery">
-
-      </div>
-    </section>
+      <H2 class="d-flex justify-content-center">Your :( search result dose not match</H2>
+    </div>
+    
     <!-- slider -->
     <div class="main">
       <section class="mt-5" id="sliders">

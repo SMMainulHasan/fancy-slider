@@ -67,3 +67,6 @@ img {
 .spinner{
   display: none !important;
 }
+.duration-box{
+  border: gray;
+}
