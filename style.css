@@ -70,3 +70,6 @@ img {
 .duration-box{
   border: gray;
 }
+#err{
+  display: none;
+}

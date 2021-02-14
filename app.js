@@ -14,8 +14,10 @@ let sliders = [];
 const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
+const searchValue =document.getElementById('search');
+console.log(searchValue.value);
 const showImages = (images) => {
-  if (images.length === 0) {
+  if (images.length < 1) {
     gallery.innerHTML = '';
     //Not find error massage
     document.getElementById('err').style.display = 'block';
@@ -68,7 +70,7 @@ const createSlider = () => {
     alert('Select at least 2 image.')
     return;
   }
-
+  //Default slider duration unit set in sec (multiply by 1000)
   const duration = document.getElementById('duration').value * 1000 || 1000;
   if (duration < 1000) {
     alert("You can't enter less then 1 second otherwise it will move so fast");
